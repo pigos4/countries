@@ -7,7 +7,7 @@ function formatNumber(num) {
 const RenderCountries = (prop) => {
   return prop.countries.map((country, i) => {
     return (
-      <div key={i}>
+      <div key={i} className="singleCountry">
         <img alt={country.name} src={country.flag}></img>
         <h3>{country.name}</h3>
         <p>Population: {formatNumber(country.population)}</p>
@@ -31,14 +31,20 @@ function App() {
   const [arrayOfCountries, setArrayOfCountries] = useState(countries);
   return (
     <div className="App">
-      <input
-        type="text"
-        onChange={(e) => {
-          console.log(e.target.value, filterCountries(e.target.value));
-          setArrayOfCountries(filterCountries(e.target.value));
-        }}
-      ></input>
-      <RenderCountries countries={arrayOfCountries} />
+      <p>
+        Search:
+        <input
+          type="text"
+          onChange={(e) => {
+            console.log(e.target.value, filterCountries(e.target.value));
+            setArrayOfCountries(filterCountries(e.target.value));
+          }}
+        ></input>
+      </p>
+
+      <div className="flex">
+        <RenderCountries countries={arrayOfCountries} />
+      </div>
     </div>
   );
 }
